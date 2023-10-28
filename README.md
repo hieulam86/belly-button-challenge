@@ -3,12 +3,12 @@
 # Belly Button Biodiversity Dashboard
     This project presents an interactive dashboard for exploring the Belly Button Biodiversity dataset. Utilizing the D3 library, JavaScript, HTML, and Plotly, this dashboard offers insightful visualizations. Here's a structured breakdown of the project:
 
-    
+    ![Dashboard Screenshot](Dashboard.png)
 
-## Project Overview
+# Project Overview
      Objective: Create an interactive dashboard for the Belly Button Biodiversity dataset, allowing users to explore various components. The dashboard comprises a horizontal bar chart, a bubble chart, sample metadata, and a gauge chart. All components update dynamically when selecting a new sample.
 
-## Technical Skills Utilized
+# Technical Skills Utilized
     The project leverages several technical skills:
 
       - D3 Library: The D3 library is used for data loading and manipulation.
@@ -16,7 +16,7 @@
       - HTML: HTML structures the dashboard's user interface.
       - Plotly: Plotly is employed for creating and rendering the charts.
 
-## Project Parameters
+# Project Parameters
     Here are the essential project parameters and functionalities:
 
       1. Data Loading: Data is fetched from a specified URL using the D3 library.
