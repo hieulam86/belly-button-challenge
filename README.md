@@ -6,7 +6,7 @@
     
 
 ## Project Overview
-    ### Objective: Create an interactive dashboard for the Belly Button Biodiversity dataset, allowing users to explore various components. The dashboard comprises a horizontal bar chart, a bubble chart, sample metadata, and a gauge chart. All components update dynamically when selecting a new sample.
+     Objective: Create an interactive dashboard for the Belly Button Biodiversity dataset, allowing users to explore various components. The dashboard comprises a horizontal bar chart, a bubble chart, sample metadata, and a gauge chart. All components update dynamically when selecting a new sample.
 
 ## Technical Skills Utilized
     The project leverages several technical skills:
