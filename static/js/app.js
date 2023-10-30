@@ -1,17 +1,17 @@
 // Define the url for the dataset
-const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json"
+let url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json"
 
 // Fetch the data using D3
-const dataPromise = d3.json(url);
+let dataPromise = d3.json(url);
 console.log("Data Promise: ", dataPromise);
 
 // Initialize the dashboard when the data is successfully loaded
 dataPromise.then(data => {
     // Select the dropdown menu for selecting a sample
-    var selector = d3.select("#selDataset");
+    let selector = d3.select("#selDataset");
 
     // Retrieve all available sample names from the data
-    var sampleNames = data.names;
+    let sampleNames = data.names;
 
     // Add the sample names as options in the dropdown menu
     sampleNames.forEach(sample => {
@@ -22,7 +22,7 @@ dataPromise.then(data => {
     });
 
     // Set the initial sample as the first sample name
-    var initialSample = sampleNames[0];
+    let initialSample = sampleNames[0];
 
     // Display demographic information and charts for the initial sample
     buildMetadata(initialSample, data);
@@ -41,12 +41,12 @@ function optionChanged(newSample) {
 // This function displays demographic information for the selected sample
 function buildMetadata(sample, data) {
     // Retrieve the metadata for all samples
-    var metadata = data.metadata;
+    let metadata = data.metadata;
 
     // Filter the metadata to obtain information for the selected sample
-    var metadataArray = metadata.filter(sampleObj => sampleObj.id == sample);
-    var selectedSample = metadataArray[0];
-    var PANEL = d3.select("#sample-metadata"); // Select the panel for demographic information
+    let metadataArray = metadata.filter(sampleObj => sampleObj.id == sample);
+    let selectedSample = metadataArray[0];
+    let PANEL = d3.select("#sample-metadata"); // Select the panel for demographic information
 
     // Clear the previous demographic information in the panel
     PANEL.html("");
@@ -60,25 +60,25 @@ function buildMetadata(sample, data) {
 // This function creates charts for the selected sample
 function buildCharts(sample, data) {
     // Retrieve all sample data
-    var samples = data.samples;
+    let samples = data.samples;
 
     // Filter the sample data to include only the selected sample
-    var sampleArray = samples.filter(sampleObj => sampleObj.id == sample);
-    var metadataArray = data.metadata.filter(sampleObj => sampleObj.id == sample);
-    var selectedSample = sampleArray[0];
+    let sampleArray = samples.filter(sampleObj => sampleObj.id == sample);
+    let metadataArray = data.metadata.filter(sampleObj => sampleObj.id == sample);
+    let selectedSample = sampleArray[0];
 
     // Retrieve data for the selected sample
-    var otu_ids = selectedSample.otu_ids;
-    var otu_labels = selectedSample.otu_labels;
-    var sample_values = selectedSample.sample_values;
-    var wfreq = metadataArray[0].wfreq;
+    let otu_ids = selectedSample.otu_ids;
+    let otu_labels = selectedSample.otu_labels;
+    let sample_values = selectedSample.sample_values;
+    let wfreq = metadataArray[0].wfreq;
 
     // Code for bar chart
     // Sort the data to obtain the top 10 OTUs
-    var yticks = otu_ids.slice(0, 10).map(outId => `OTU ${outId}`).reverse();
+    let yticks = otu_ids.slice(0, 10).map(outId => `OTU ${outId}`).reverse();
 
     // Reverse the x-axis to ensure the bar chart has the largest on top
-    var barData = [{
+    let barData = [{
         x: sample_values.slice(0, 10).reverse(),
         y: yticks,
         type: "bar",
@@ -87,7 +87,7 @@ function buildCharts(sample, data) {
     }];
 
     // Define the layout for the horizontal bar chart
-    var barLayout = {
+    let barLayout = {
         title: "Top 10 OTUs Found in the Individual",
         xaxis: { title: "Sample Values" },
         yaxis: { title: "OTU ID" },
@@ -106,22 +106,22 @@ function buildCharts(sample, data) {
 // Code for Gauge chart
 function buildGaugeChart(wfreq) {
     // Calculate angles and coordinates for the gauge chart
-    var degrees = 180 - wfreq * 20;
-    var radius = 0.5;
-    var radians = degrees * Math.PI / 180;
-    var x = radius * Math.cos(radians);
-    var y = radius * Math.sin(radians);
+    let degrees = 180 - wfreq * 20;
+    let radius = 0.5;
+    let radians = degrees * Math.PI / 180;
+    let x = radius * Math.cos(radians);
+    let y = radius * Math.sin(radians);
 
     // Create the path for the needle
-    var mainPath = 'M -.0 -0.025 L .0 0.025 L ';
-    var pathX = String(x);
-    var space = ' ';
-    var pathY = String(y);
-    var pathEnd = ' Z';
-    var path = mainPath.concat(pathX, space, pathY, pathEnd);
+    let mainPath = 'M -.0 -0.025 L .0 0.025 L ';
+    let pathX = String(x);
+    let space = ' ';
+    let pathY = String(y);
+    let pathEnd = ' Z';
+    let path = mainPath.concat(pathX, space, pathY, pathEnd);
 
     // Create the data for the scatter plot and the pie chart
-    var scatterData = {
+    let scatterData = {
         type: 'scatter',
         x: [0],
         y: [0],
@@ -134,7 +134,7 @@ function buildGaugeChart(wfreq) {
         hoverinfo: 'text'
     };
 
-    var pieData = {
+    let pieData = {
         values: [50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50],
         rotation: 90,
         text: ['8-9', '7-8', '6-7', '5-6', '4-5', '3-4', '2-3', '1-2', '0-1', ''],
@@ -152,9 +152,9 @@ function buildGaugeChart(wfreq) {
         showlegend: false
     };
 
-    var gaugeData = [scatterData, pieData];
+    let gaugeData = [scatterData, pieData];
 
-    var gaugeLayout = {
+    let gaugeLayout = {
         // Needle
         shapes: [{
             type: 'path',
@@ -175,7 +175,7 @@ function buildGaugeChart(wfreq) {
 
 // Code for Bubble Chart
 function buildBubbleChart(otu_ids, sample_values, otu_labels) {
-    var bubbleData = [{
+    let bubbleData = [{
         x: otu_ids,
         y: sample_values,
         mode: "markers",
@@ -187,7 +187,7 @@ function buildBubbleChart(otu_ids, sample_values, otu_labels) {
         text: otu_labels
     }];
 
-    var bubbleLayout = {
+    let bubbleLayout = {
         xaxis: { title: "OTU ID" }
     };
 
